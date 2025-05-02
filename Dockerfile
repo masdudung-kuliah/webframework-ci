@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     intl \
     mbstring \
     pdo_mysql \
+    mysqli \ 
     zip \
     && apt-get clean
 

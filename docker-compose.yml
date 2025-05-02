@@ -8,6 +8,12 @@ services:
       - ./:/var/www/html
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
+      - APACHE_SERVER_NAME=webframework-ci.local
       - ENV COMPOSER_ALLOW_SUPERUSER=1
       - NODE_ENV=development
     restart: unless-stopped
+    networks:
+      - vps_appnet
+networks:
+  vps_appnet:
+    external: true
