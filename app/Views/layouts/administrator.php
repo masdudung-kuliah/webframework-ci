@@ -11,15 +11,25 @@
   <link rel="stylesheet" href="<?=base_url('adminlte/plugins/fontawesome-free/css/all.min.css')?>">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url('adminlte/dist/css/adminlte.min.css')?>">
+
+  <link rel="stylesheet" href="<?=base_url('assets/css/global.css')?>">
+  
 </head>
-<body class="hold-transition sidebar-mini">
+
+<?php $global_notification = session()->getFlashdata('notification'); ?>
+
+<body class="hold-transition sidebar-mini" data-notification='<?= json_encode(session()->getFlashdata('notification')) ?>'>
+
 <!-- Site wrapper -->
 <div class="wrapper">
   <?= $this->include('parts/navbar') ?>
   
   <?= $this->include('parts/sidebar') ?>
-  
-  <?= $this->renderSection('content') ?>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="main-wrapper content-wrapper">
+    <?= $this->renderSection('content') ?>
+  </div>
   
 
   <footer class="main-footer">
@@ -43,6 +53,23 @@
 <script src="<?=base_url('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url('adminlte/dist/js/adminlte.min.js')?>"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?= $this->renderSection('page_script') ?>
+
+<script>
+$(function () {
+  const notif = $('body').data('notification');
+  if (!notif) return;
+
+  Swal.fire({
+    text: notif?.message ?? "",
+    icon: notif?.type
+  });
+});
+</script>
+
 </body>
 </html>
 
