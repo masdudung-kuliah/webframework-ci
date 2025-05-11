@@ -1,0 +1,9 @@
+div.main-wrapper section.content {
+  padding-top: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+div.main-wrapper section.content div.card {
+  padding: 0px 20px;
+}
